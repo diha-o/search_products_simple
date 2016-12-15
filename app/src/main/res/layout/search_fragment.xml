@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+       >
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:cardElevation="8dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:id="@+id/search"
+                    android:layout_weight="0"
+                    android:hint="Search"
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="6dp"
+                    android:textColor="#424242"
+                    android:textColorHint="#929292"
+                    android:singleLine="true"
+                     />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:id="@+id/search_icon"
+                    android:layout_weight="1"
+                    android:layout_gravity="right|center_vertical"
+                    android:paddingRight="12dp" />
+
+            </FrameLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:text="All Category:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textColor="#717171"
+            android:paddingLeft="10dp"
+            android:paddingTop="4dp"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh_black_24dp"
+            android:layout_gravity="right"
+            android:id="@+id/refresh_category_icon"
+            android:foregroundGravity="right"
+            android:alpha="0.5"
+            android:paddingTop="4dp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <GridView
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/categoryView"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp">
+
+    </GridView>
+</FrameLayout>
+
+</LinearLayout>
