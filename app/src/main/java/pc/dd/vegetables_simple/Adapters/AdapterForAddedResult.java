@@ -131,8 +131,6 @@ public class AdapterForAddedResult extends BaseAdapter {
 
         Intent i = new Intent(mContext,FullDescriptionAct.class);//from where
 
-        i.setAction(i.ACTION_VIEW);
-
         imageView.setDrawingCacheEnabled(true);
 
         // Without it the view will have a dimension of 0,0 and the bitmap will be null
@@ -144,11 +142,8 @@ public class AdapterForAddedResult extends BaseAdapter {
         Bitmap b = Bitmap.createBitmap(imageView.getDrawingCache()); //can be error
         imageView.setDrawingCacheEnabled(false); // clear drawing cache
 
-//        imageView.buildDrawingCache(true); //imageView.setDrawingCacheEnabled(false);
-//        Bitmap image= imageView.getDrawingCache();
-//        imageView.destroyDrawingCache();// -> not works
-
         Bitmap scaledBitmap =  scaleDown(b, 400, true , width,height); // convert -> image size must be <1mb
+
         Bundle extras = new Bundle();
         extras.putParcelable("photo", scaledBitmap); //ложим айди
         extras.putString("name",name);
@@ -157,14 +152,8 @@ public class AdapterForAddedResult extends BaseAdapter {
         extras.putString("photo_url",p_url);
         extras.putBoolean("added_btn",false);
         i.putExtras(extras);
-       // mContext.startActivity(i);
-        mContext.startActivity(i,
-                ActivityOptions.makeSceneTransitionAnimation(
-                        mContext,
-                        imageView //наше фото
-                        ,
-                        imageView.getTransitionName() // transition name
-                ).toBundle());
+
+        mContext.startActivity(i);
 
     }
     public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,

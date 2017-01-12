@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import pc.dd.vegetables_simple.Fragments.CategoryFragment;
-import pc.dd.vegetables_simple.Fragments.SavedProductsInMainAct;
+import pc.dd.vegetables_simple.Fragments.SavedProductsInMainFragment;
 
 
 public class PagerAdapterVeg extends FragmentStatePagerAdapter {
@@ -23,7 +23,7 @@ public class PagerAdapterVeg extends FragmentStatePagerAdapter {
                 return new CategoryFragment();
             case 1:
             default:
-                return new SavedProductsInMainAct();
+                return new SavedProductsInMainFragment();
         }
     }
 

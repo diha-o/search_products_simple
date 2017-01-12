@@ -63,33 +63,19 @@ public class FullDescriptionAct extends AppCompatActivity {
         descriptionTextView.setText(description);
         priceTextView.setText(price+" $");
 
-        //
-        final DBHelper helper = new DBHelper(this.getApplicationContext());
-        final SQLiteDatabase database = helper.getWritableDatabase();
-        //
+
 
         addImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addImageViewClick(helper,database,photo_url,name,description,FullDescriptionAct.this);//ad description to act
+                DBSingleton.getInstance(FullDescriptionAct.this.getApplicationContext()).addDatatoDatabase(photo_url,name,description,FullDescriptionAct.this);//ad description to act
             }
         });
     }
-    public void addImageViewClick(DBHelper helper,SQLiteDatabase database,String photo_url,String name,String description,Context c){
+    public void addImageViewClick(String photo_url,String name,String description,Context c){
 
 
-        ContentValues cv = new ContentValues();
-        cv.put("name",name);
-        cv.put("description",description);
-        cv.put("photo_url",photo_url);
-        //add to bd
-        long id = database.insert("di", null, cv);
-        if (id!= -1){
-            Toast.makeText(c,"Added to your list",Toast.LENGTH_SHORT).show();
-        }else Toast.makeText(c,"Error! Can't add.",Toast.LENGTH_LONG).show();
-        // close bd
-       // database.update("dictionary", cv, "KEY_WORD="+"ef", null);
-        helper.close();
+
     }
     @Override
     public boolean onSupportNavigateUp(){

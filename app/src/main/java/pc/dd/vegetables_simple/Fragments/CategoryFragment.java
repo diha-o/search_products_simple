@@ -94,34 +94,40 @@ public class CategoryFragment extends Fragment {
         layoutCategory.setNumColumns(GridView.AUTO_FIT);
 
         //change to retrofit
-      /*  new AsyncTaskForCategory().execute(layoutCategory,rootView);
+      //  new AsyncTaskForCategory().execute(layoutCategory,rootView);
         refreshCategory_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.animate().rotation(360).setDuration(700).start(); //animation if clicked
-                new AsyncTaskForCategory().execute(layoutCategory,rootView);
+                getCategory(layoutCategory);
             }
-        });*/
+        });
+
+        //
+        getCategory(layoutCategory);
+        return rootView;
+    }
+
+    private void getCategory(final GridView mlayoutCategory){
         //change to retrofit from now
-            categoryParsed.getData(KEY).enqueue(new Callback<CategoryJsonParser>() {
+        categoryParsed.getData(KEY).enqueue(new Callback<CategoryJsonParser>() {
             @Override
             public void onResponse(Call<CategoryJsonParser> call, Response<CategoryJsonParser> response) {
-               try {
-                   List<JsonCategoryParsed> jsonList = response.body().getResults();
+                try {
+                    List<JsonCategoryParsed> jsonList = response.body().getResults();
 
-                   //all response to category
-                   ArrayList templist = new ArrayList();
-                   for (int i = 0; i != jsonList.size(); i++)
-                       templist.add(jsonList.get(i).getCategoryName());
+                    //all response to category
+                    ArrayList templist = new ArrayList();
+                    for (int i = 0; i != jsonList.size(); i++)
+                        templist.add(jsonList.get(i).getCategoryName());
 
-                   makeListofCategory(templist, CategoryFragment.this.getContext(), layoutCategory);
+                    makeListofCategory(templist, CategoryFragment.this.getContext(), mlayoutCategory);
 
-                   Log.d("Success \n\n\n", response.message());
-                   Toast.makeText(CategoryFragment.this.getContext(),"Load Category Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CategoryFragment.this.getContext(),"Load Category Success", Toast.LENGTH_SHORT).show();
 
-               } catch (Exception e){
-                   Toast.makeText(CategoryFragment.this.getContext(),"Load Category Error", Toast.LENGTH_SHORT).show();
-               }
+                } catch (Exception e){
+                    Toast.makeText(CategoryFragment.this.getContext(),"Load Category Error", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -129,11 +135,8 @@ public class CategoryFragment extends Fragment {
                 Log.d("Error \n", t.getMessage());
             }
         });
-
-
-        //
-        return rootView;
     }
+
     public void makeListofCategory(ArrayList list, Context context ,GridView layoutCategory){
         AdapterForTags adapterForTags = new AdapterForTags(context,list);
         layoutCategory.setAdapter(adapterForTags);

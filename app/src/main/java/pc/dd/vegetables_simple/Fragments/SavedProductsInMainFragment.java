@@ -16,13 +16,14 @@ import java.util.ArrayList;
 import pc.dd.vegetables_simple.Activitys.MainAct;
 import pc.dd.vegetables_simple.Adapters.AdapterForAddedResult;
 import pc.dd.vegetables_simple.DBHelper;
+import pc.dd.vegetables_simple.DBSingleton;
 import pc.dd.vegetables_simple.R;
 
 /**
  * Created by User on 14.12.2016.
  */
 
-public class SavedProductsInMainAct extends Fragment {
+public class SavedProductsInMainFragment extends Fragment {
     private ArrayList aName = new ArrayList();
     private ArrayList aUrl = new ArrayList();
     private ArrayList aDescription = new ArrayList();
@@ -35,9 +36,7 @@ public class SavedProductsInMainAct extends Fragment {
         gridView.setColumnWidth(GridView.AUTO_FIT);
         //get database saved file
         try {
-           DBHelper helper = new DBHelper(rootView.getContext());
-            SQLiteDatabase database = helper.getWritableDatabase();
-            Cursor c = database.query("di", null, null, null, null, null, null);
+            Cursor c = DBSingleton.getInstance(this.getContext()).readFromDatabase();
             if (c.moveToFirst()) {
 
                 // определяем номера столбцов по имени в выборке
@@ -54,7 +53,7 @@ public class SavedProductsInMainAct extends Fragment {
 
                 //adapter
                 gridView.setAdapter(new AdapterForAddedResult(aName,aUrl,aDescription,null,(MainAct)getActivity()));
-
+                DBSingleton.getInstance(this.getContext()).close();
             } else
                 Toast.makeText(rootView.getContext(),"Can't load added products list",Toast.LENGTH_LONG).show();
             c.close(); // close basa

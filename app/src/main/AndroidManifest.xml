@@ -11,6 +11,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Products Search App"
         android:supportsRtl="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme" >
         <activity android:name=".Activitys.MainAct" android:windowSoftInputMode="adjustPan" >
             <intent-filter>
