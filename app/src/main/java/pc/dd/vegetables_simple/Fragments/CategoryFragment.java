@@ -126,7 +126,7 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onFailure(Call<CategoryJsonParser> call, Throwable t) {
-                Log.d("Error \n\n\n", t.getMessage());
+                Log.d("Error \n", t.getMessage());
             }
         });
 
