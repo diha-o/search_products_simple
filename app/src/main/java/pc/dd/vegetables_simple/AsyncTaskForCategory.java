@@ -77,8 +77,8 @@ public class AsyncTaskForCategory extends AsyncTask<View, Integer, Object>
         }
     }
     public void makeListofCategory(ArrayList list){
-        AdapterForTags adapterForTags = new AdapterForTags(rootLayout,list);
-        rootLayout.setAdapter(adapterForTags);
+       // AdapterForTags adapterForTags = new AdapterForTags(rootLayout,list);
+       // rootLayout.setAdapter(adapterForTags);
     }
 
     private static String convertStreamToString(InputStream is) {
